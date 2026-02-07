@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Girll</title>
+
+  <!-- Google Font (Sans-serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- COUNTDOWN SCREEN -->
+<section id="countdown-screen">
+  <div id="count">3</div>
+</section>
+
+<!-- THREAD / LANTERN SCREEN -->
+<section id="thread-screen" class="hidden">
+  <div class="lantern-glow"></div>
+  <div id="thread"></div>
+  <p class="hint">Pull the thread 💕</p>
+</section>
+
+<!-- MAIN SCREEN -->
+<section id="main-screen" class="hidden">
+
+  <!-- MUSIC -->
+  <audio id="music" loop>
+    <source src="assets/audio/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- TITLE -->
+  <h1 class="title">Happy Birthday My Girll</h1>
+
+  <!-- MEMORY WALL -->
+  <div id="memory-wall">
+
+    <div class="card photo-card">
+      <img src="assets/images/photo1.jpg">
+    </div>
+
+    <div class="card text-card">
+      <p>Random dummy words here<br>replace later</p>
+    </div>
+
+    <div class="card photo-card">
+      <img src="assets/images/photo2.jpg">
+    </div>
+
+    <div class="card text-card">
+      <p>Another random message<br>from your heart</p>
+    </div>
+
+    <div class="card photo-card">
+      <img src="assets/images/photo3.jpg">
+    </div>
+
+    <div class="card text-card">
+      <p>More dummy words<br>you will replace</p>
+    </div>
+
+    <div class="card photo-card">
+      <img src="assets/images/photo4.jpg">
+    </div>
+
+  </div>
+
+  <!-- TYPEWRITER TEXT -->
+  <div id="typewriter" class="typewriter"></div>
+
+  <!-- FINAL SURPRISE -->
+  <div id="final-message" class="hidden">
+    <h2>One last thing… 🥺</h2>
+    <p>You are my favourite person 🤍</p>
+  </div>
+
+</section>
+
+<!-- JS -->
+<script src="js/script.js"></script>
+</body>
+</html>
