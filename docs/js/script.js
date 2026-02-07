@@ -1,80 +1,118 @@
-/* ELEMENTS */
 const countEl = document.getElementById("count");
 const countdownScreen = document.getElementById("countdown-screen");
-const threadScreen = document.getElementById("thread-screen");
+const chainContainer = document.getElementById("pull-chain-container");
+const chain = document.getElementById("chain");
 const mainScreen = document.getElementById("main-screen");
 const music = document.getElementById("music");
 
-/* COUNTDOWN */
 let count = 3;
+
+/* COUNTDOWN */
 const timer = setInterval(() => {
   count--;
   countEl.textContent = count;
   if (count === 0) {
     clearInterval(timer);
     countdownScreen.style.display = "none";
-    threadScreen.classList.remove("hidden");
+    chainContainer.classList.remove("hidden");
   }
 }, 1000);
 
-/* THREAD PULL */
-document.getElementById("thread").addEventListener("click", () => {
-  threadScreen.style.display = "none";
-  mainScreen.classList.remove("hidden");
-  music.play();
+/* PULL CHAIN LOGIC */
+let pulling = false;
+let startY = 0;
+const pullLimit = 120;
 
-  randomizeCards();
-  startTypewriter();
-  startHearts();
-});
+chain.addEventListener("mousedown", startPull);
+chain.addEventListener("touchstart", startPull);
+
+function startPull(e) {
+  pulling = true;
+  startY = e.touches ? e.touches[0].clientY : e.clientY;
+}
+
+document.addEventListener("mousemove", pullMove);
+document.addEventListener("touchmove", pullMove);
+
+function pullMove(e) {
+  if (!pulling) return;
+  const y = e.touches ? e.touches[0].clientY : e.clientY;
+  const pull = y - startY;
+
+  if (pull > 0) {
+    chain.style.transform = `translateY(${pull}px)`;
+  }
+
+  if (pull > pullLimit) {
+    activateLight();
+    pulling = false;
+  }
+}
+
+document.addEventListener("mouseup", resetChain);
+document.addEventListener("touchend", resetChain);
+
+function resetChain() {
+  if (!pulling) return;
+  pulling = false;
+  chain.style.transform = "translateY(0)";
+}
+
+/* ACTIVATE LIGHT */
+function activateLight() {
+  chainContainer.style.display = "none";
+
+  document.body.style.background =
+    "radial-gradient(circle at top left, rgba(255,182,193,0.8), black 60%)";
+
+  setTimeout(() => {
+    document.body.style.background = "black";
+    mainScreen.classList.remove("hidden");
+    music.play();
+    randomizeCards();
+    typeText();
+    hearts();
+  }, 700);
+}
 
 /* RANDOM CARD PLACEMENT */
 function randomizeCards() {
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach((card, i) => {
-    const top = Math.random() * 60 + 5;
-    const left = Math.random() * 70 + 5;
-    const rotate = Math.random() * 30 - 15;
-
-    card.style.top = top + "%";
-    card.style.left = left + "%";
-    card.style.transform = `rotate(${rotate}deg)`;
+  document.querySelectorAll(".card").forEach((card, i) => {
+    card.style.top = Math.random() * 65 + "%";
+    card.style.left = Math.random() * 70 + "%";
+    card.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
     card.style.animationDelay = `${i * 0.5}s`;
   });
 }
 
 /* TYPEWRITER */
 const messages = [
-  "Dummy words… you light up my world.",
-  "Dummy words… your smile is my favourite.",
-  "Dummy words… today is special because of you."
+  "Dummy words… you make everything brighter.",
+  "Dummy words… your smile feels like home.",
+  "Dummy words… I’m so grateful for you."
 ];
 
-let msgIndex = 0;
-let charIndex = 0;
-const speed = 45;
+let i = 0, j = 0;
 const typeEl = document.getElementById("typewriter");
 
-function startTypewriter() {
-  if (msgIndex < messages.length) {
-    if (charIndex < messages[msgIndex].length) {
-      typeEl.textContent += messages[msgIndex][charIndex];
-      charIndex++;
-      setTimeout(startTypewriter, speed);
+function typeText() {
+  if (i < messages.length) {
+    if (j < messages[i].length) {
+      typeEl.textContent += messages[i][j++];
+      setTimeout(typeText, 50);
     } else {
       typeEl.textContent += "\n\n";
-      charIndex = 0;
-      msgIndex++;
-      setTimeout(startTypewriter, 700);
+      j = 0;
+      i++;
+      setTimeout(typeText, 700);
     }
   } else {
     document.getElementById("final-message").classList.remove("hidden");
   }
 }
 
-/* FLOATING HEARTS & BOWS */
-function startHearts() {
+/* HEARTS & BOWS */
+function hearts() {
   setInterval(() => {
     const h = document.createElement("div");
     h.className = "heart";

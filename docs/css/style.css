@@ -1,7 +1,5 @@
 :root {
   --pink: #ffb6c1;
-  --white: #ffffff;
-  --black: #000000;
 }
 
 * {
@@ -12,11 +10,12 @@
 }
 
 body {
-  background: var(--black);
+  background: black;
   overflow: hidden;
+  color: white;
 }
 
-/* FULL SCREEN SECTIONS */
+/* FULL SCREEN */
 section {
   width: 100vw;
   height: 100vh;
@@ -28,47 +27,48 @@ section {
 
 /* COUNTDOWN */
 #countdown-screen {
-  color: var(--white);
-  font-size: clamp(5rem, 12vw, 8rem);
+  font-size: clamp(5rem, 10vw, 8rem);
   font-weight: 700;
 }
 
-/* THREAD SCREEN */
-#thread-screen {
-  position: relative;
-  color: var(--pink);
+/* PULL CHAIN */
+#pull-chain-container {
+  position: fixed;
+  top: 0;
+  left: 30px;
+  z-index: 999;
 }
 
-#thread {
-  width: 4px;
-  height: 35vh;
-  background: var(--pink);
+#chain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-200px);
+  animation: dropChain 1.4s ease-out forwards;
   cursor: grab;
 }
 
-.hint {
-  margin-top: 20px;
+@keyframes dropChain {
+  to { transform: translateY(0); }
 }
 
-/* LANTERN LIGHT */
-.lantern-glow {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(255,182,193,0.9), transparent 70%);
-  filter: blur(25px);
-  animation: pulse 2s infinite;
+.bead {
+  width: 8px;
+  height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  margin: 6px 0;
 }
 
-@keyframes pulse {
-  0%,100% { opacity: 0.4; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.1); }
+.bead.end {
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 10px var(--pink);
 }
 
 /* MAIN */
 #main-screen {
-  color: var(--white);
-  padding: 20px;
+  text-align: center;
 }
 
 /* TITLE */
@@ -88,52 +88,56 @@ section {
   top: 50%;
   z-index: -1;
   border-radius: 50%;
-  transform: rotate(-4deg);
+  transform: rotate(-3deg);
 }
 
 /* MEMORY WALL */
 #memory-wall {
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 55vh;
 }
 
-/* CARDS */
 .card {
   position: absolute;
   opacity: 0;
-  animation: fadeIn 2s ease forwards;
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
 
 .photo-card img {
-  width: clamp(150px, 35vw, 260px);
-  border-radius: 18px;
+  width: clamp(140px, 35vw, 260px);
+  border-radius: 20px;
   box-shadow: 0 10px 40px rgba(255,182,193,0.3);
 }
 
 .text-card {
   max-width: 220px;
-  color: var(--white);
   font-size: clamp(0.9rem, 3.5vw, 1.1rem);
-  line-height: 1.6;
 }
 
 /* TYPEWRITER */
-.typewriter {
+#typewriter {
   margin-top: 20px;
   color: var(--pink);
-  font-size: clamp(1rem, 3.5vw, 1.3rem);
-  min-height: 80px;
-  text-align: center;
+  min-height: 70px;
 }
 
 /* FINAL MESSAGE */
 #final-message {
   margin-top: 30px;
-  animation: fadeUp 2s ease forwards;
+  animation: fadeUp 2s forwards;
 }
 
-/* FLOATING HEARTS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEARTS */
 .heart {
   position: fixed;
   bottom: -40px;
@@ -146,15 +150,6 @@ section {
     transform: translateY(-120vh);
     opacity: 0;
   }
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .hidden {
