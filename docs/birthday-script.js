@@ -170,7 +170,7 @@ function showGift() {
         });
         
         // Background music start
-        const audio = new Audio("https://cdn.pixabay.com/download/audio/2023/10/24/audio_9592471343.mp3?filename=happy-birthday-jazz-171092.mp3");
+        const audio = new Audio("mansaudio.mp3");
         audio.play().catch(() => {});
 
         setTimeout(() => {
