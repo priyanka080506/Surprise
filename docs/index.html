@@ -1,81 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday My Girll</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="css/birthday-style.css">
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
-
-<!-- COUNTDOWN -->
-<section id="countdown-screen">
-  <div id="count">3</div>
-</section>
-
-<!-- PULL CHAIN -->
-<div id="pull-chain-container" class="hidden">
-  <div id="chain">
-    <div class="bead"></div>
-    <div class="bead"></div>
-    <div class="bead"></div>
-    <div class="bead"></div>
-    <div class="bead"></div>
-    <div class="bead end"></div>
+  <!-- Countdown Section -->
+  <div id="countdown" class="section active">
+    <div id="countdownNumber">3</div>
   </div>
-</div>
 
-<!-- MAIN CONTENT -->
-<section id="main-screen" class="hidden">
+  <!-- Lantern Pull Thread Section -->
+  <div id="lanternSection" class="section">
+    <div id="lanternThread">
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+      <div class="bead"></div>
+    </div>
+    <div id="pinkLight" class="pink-light"></div>
+  </div>
 
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
+  <!-- Cake Section -->
+  <div id="cakeSection" class="section">
+    <div id="cakeContainer">
+      <svg id="cakeSvg" width="300" height="300" viewBox="0 0 300 300">
+        <!-- Cake layers -->
+        <ellipse cx="150" cy="220" rx="100" ry="20" fill="#8B4513" opacity="0.3"/>
+        <rect x="50" y="180" width="200" height="40" fill="#FFB6C1" rx="5"/>
+        <ellipse cx="150" cy="180" rx="100" ry="20" fill="#FFC0CB"/>
+
+        <rect x="60" y="150" width="180" height="30" fill="#FFB6C1" rx="5"/>
+        <ellipse cx="150" cy="150" rx="90" ry="18" fill="#FFC0CB"/>
+
+        <rect x="70" y="130" width="160" height="20" fill="#FFB6C1" rx="5"/>
+        <ellipse cx="150" cy="130" rx="80" ry="15" fill="#FFC0CB"/>
+
+        <!-- Frosting details -->
+        <circle cx="80" cy="200" r="8" fill="#FFE4E1"/>
+        <circle cx="110" cy="200" r="8" fill="#FFE4E1"/>
+        <circle cx="140" cy="200" r="8" fill="#FFE4E1"/>
+        <circle cx="170" cy="200" r="8" fill="#FFE4E1"/>
+        <circle cx="200" cy="200" r="8" fill="#FFE4E1"/>
+        <circle cx="220" cy="200" r="8" fill="#FFE4E1"/>
+
+        <!-- Candle -->
+        <rect id="candle" x="143" y="90" width="14" height="40" fill="#FF69B4" rx="2"/>
+        <ellipse cx="150" cy="90" rx="7" ry="3" fill="#FF1493"/>
+
+        <!-- Candle flame (hidden initially) -->
+        <g id="flame" class="hidden">
+          <ellipse cx="150" cy="80" rx="8" ry="12" fill="#FFB6C1" opacity="0.6"/>
+          <ellipse cx="150" cy="78" rx="6" ry="10" fill="#FFC0CB" opacity="0.8"/>
+          <ellipse cx="150" cy="76" rx="4" ry="8" fill="#FFE4E1"/>
+        </g>
+      </svg>
+    </div>
+    <div id="cakeText" class="instruction-text">Tap the candle to make it glow</div>
+  </div>
+
+  <!-- Gift Section -->
+  <div id="giftSection" class="section">
+    <div id="giftBox">
+      <svg width="150" height="150" viewBox="0 0 150 150">
+        <rect x="25" y="50" width="100" height="80" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2"/>
+        <rect x="25" y="40" width="100" height="15" fill="#FF69B4"/>
+        <rect x="70" y="40" width="10" height="90" fill="#FF1493"/>
+        <path d="M 75 40 Q 60 20, 50 30" stroke="#FF1493" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M 75 40 Q 90 20, 100 30" stroke="#FF1493" stroke-width="8" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="instruction-text">Tap me</div>
+  </div>
+
+  <!-- Memories Section -->
+  <div id="memoriesSection" class="section">
+    <div class="memories-container">
+      <div class="title-container">
+        <h1 class="birthday-title">Happy Birthday My Girl
+          <svg class="bow-decoration" width="80" height="60" viewBox="0 0 80 60">
+            <path d="M 20 30 Q 10 10, 5 25 Q 10 35, 20 30" fill="#FFB6C1"/>
+            <path d="M 60 30 Q 70 10, 75 25 Q 70 35, 60 30" fill="#FFB6C1"/>
+            <circle cx="40" cy="30" r="8" fill="#FF69B4"/>
+            <path d="M 40 35 L 35 50 L 40 48 L 45 50 Z" fill="#FFB6C1"/>
+          </svg>
+        </h1>
+      </div>
+
+      <div class="memory-item memory-left">
+        <div class="memory-photo" style="transform: rotate(-2deg);">
+          <img src="https://images.pexels.com/photos/1024967/pexels-photo-1024967.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 1">
+        </div>
+        <div class="memory-text">
+          <p>From the moment we met, you brought sunshine into my life. Your smile lights up every room you enter, and your laughter is the most beautiful sound I know. You have this incredible way of making everyone around you feel special and loved.</p>
+        </div>
+      </div>
+
+      <div class="memory-item memory-right">
+        <div class="memory-text">
+          <p>I admire your strength and the way you handle everything with such grace. You face challenges head-on with a positive attitude that inspires me every single day. Your determination and resilience are truly remarkable.</p>
+        </div>
+        <div class="memory-photo" style="transform: rotate(3deg);">
+          <img src="https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 2">
+        </div>
+      </div>
+
+      <div class="memory-item memory-left">
+        <div class="memory-photo" style="transform: rotate(2deg);">
+          <img src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 3">
+        </div>
+        <div class="memory-text">
+          <p>Your kindness knows no bounds. The way you care for others and always put their needs before your own shows what an amazing person you are. You have a heart of gold, and I feel so lucky to know you.</p>
+        </div>
+      </div>
+
+      <div class="memory-item memory-right">
+        <div class="memory-text">
+          <p>Every moment spent with you is a treasure. Whether we're having deep conversations or just enjoying comfortable silence, being with you feels like home. You make ordinary moments extraordinary.</p>
+        </div>
+        <div class="memory-photo" style="transform: rotate(-3deg);">
+          <img src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 4">
+        </div>
+      </div>
+
+      <div class="memory-item memory-left">
+        <div class="memory-photo" style="transform: rotate(1deg);">
+          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 5">
+        </div>
+        <div class="memory-text">
+          <p>Your passion for life is contagious. You approach everything with such enthusiasm and joy that it makes me want to be a better person. You remind me to appreciate the little things and find beauty in everyday moments.</p>
+        </div>
+      </div>
+
+      <div class="memory-item memory-right">
+        <div class="memory-text">
+          <p>I love how you can make me laugh even on my worst days. Your sense of humor and playful spirit are some of the things I cherish most about you. You know exactly how to brighten my mood.</p>
+        </div>
+        <div class="memory-photo" style="transform: rotate(-1deg);">
+          <img src="https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 6">
+        </div>
+      </div>
+
+      <div class="memory-item memory-left">
+        <div class="memory-photo" style="transform: rotate(2deg);">
+          <img src="https://images.pexels.com/photos/1462980/pexels-photo-1462980.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 7">
+        </div>
+        <div class="memory-text">
+          <p>You inspire me to dream bigger and reach higher. Your belief in me gives me confidence I never knew I had. Thank you for always encouraging me and supporting my goals, no matter how crazy they might seem.</p>
+        </div>
+      </div>
+
+      <div class="memory-item memory-right">
+        <div class="memory-text">
+          <p>Your intelligence and creativity never cease to amaze me. The way you think about things, solve problems, and express yourself is beautiful. You have such a unique perspective that makes the world more interesting.</p>
+        </div>
+        <div class="memory-photo" style="transform: rotate(-2deg);">
+          <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 8">
+        </div>
+      </div>
+
+      <div class="memory-item memory-left">
+        <div class="memory-photo" style="transform: rotate(3deg);">
+          <img src="https://images.pexels.com/photos/1024311/pexels-photo-1024311.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 9">
+        </div>
+        <div class="memory-text">
+          <p>Thank you for being authentically you. In a world where everyone tries to fit in, you stand out by being genuine and true to yourself. Your authenticity is refreshing and inspiring.</p>
+        </div>
+      </div>
+
+      <div class="memory-item memory-right">
+        <div class="memory-text">
+          <p>As you celebrate another year of life, I want you to know how much you mean to me. You've made such a positive impact on my life, and I'm grateful for every moment we share. Here's to many more memories together!</p>
+        </div>
+        <div class="memory-photo" style="transform: rotate(-1deg);">
+          <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Memory 10">
+        </div>
+      </div>
+
+      <div class="final-message">
+        <h2>You are loved, cherished, and celebrated today and always!</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating decorations -->
+  <div id="floatingDecorations"></div>
+
+  <!-- Background music (will start after gift is opened) -->
+  <audio id="backgroundMusic" loop>
+    <source src="https://assets.mixkit.co/active_storage/sfx/2997/2997-preview.mp3" type="audio/mpeg">
   </audio>
 
-  <h1 class="title">Happy Birthday My Girll</h1>
-
-  <!-- RANDOM MEMORY WALL -->
-  <div id="memory-wall">
-
-    <div class="card photo-card">
-      <img src="photo1.jpg">
-    </div>
-
-    <div class="card text-card">
-      <p>Dummy words here<br>you will replace</p>
-    </div>
-
-    <div class="card photo-card">
-      <img src="photo2.jpg">
-    </div>
-
-    <div class="card text-card">
-      <p>More random emotional<br>dummy words</p>
-    </div>
-
-    <div class="card photo-card">
-      <img src="photo3.jpg">
-    </div>
-
-    <div class="card text-card">
-      <p>Another message<br>from your heart</p>
-    </div>
-
-  </div>
-
-  <!-- TYPEWRITER -->
-  <div id="typewriter"></div>
-
-  <!-- FINAL SURPRISE -->
-  <div id="final-message" class="hidden">
-    <h2>One last thing… 🥺</h2>
-    <p>You are more special than you know 💗</p>
-  </div>
-
-</section>
-
-<script src="script.js"></script>
+  <script type="module" src="js/birthday-script.js"></script>
 </body>
 </html>
