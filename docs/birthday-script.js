@@ -170,7 +170,7 @@ function showGift() {
         });
         
         // Background music start
-        const audio = new Audio("mansaudio.mp3");
+        const audio = new Audio("assets/mansaudio.aac");
         audio.play().catch(() => {});
 
         setTimeout(() => {
